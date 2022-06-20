@@ -1,0 +1,1308 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "Brcb Consumption Copy 2",
+    "contact": {}
+  },
+  "host": "as1.staging.tecban-consumption.uk-hub.ozoneapi.co.uk",
+  "basePath": "/",
+  "securityDefinitions": {
+    "auth": {
+      "type": "basic"
+    }
+  },
+  "schemes": ["https"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "TEST Register Provider",
+        "tags": ["Setup"],
+        "operationId": "TESTRegisterProvider",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/token": {
+      "post": {
+        "summary": "Step 1: Get Client Credentials Grant (consumption scope)",
+        "tags": ["Payment"],
+        "operationId": "Step1:GetClientCredentialsGrant(consumptionscope)",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "consumes": ["application/x-www-form-urlencoded"],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": false,
+            "enum": ["application/x-www-form-urlencoded"],
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "grant_type",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "scope",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/registered-authorization-servers/60221e14-3fe2-42a9-a8f1-0c1337bc05c7": {
+      "get": {
+        "summary": "Step 2: Get Registered Authorization Servers",
+        "tags": ["Payment"],
+        "operationId": "Step2:GetRegisteredAuthorizationServers",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/payment-consent": {
+      "post": {
+        "summary": "Step 3: POST Payment Consent",
+        "tags": ["Payment"],
+        "operationId": "Step3:POSTPaymentConsent",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Step3%3APOSTPaymentConsentRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/pix/payment-consume": {
+      "post": {
+        "summary": "Step 4: POST Payment Consume",
+        "tags": ["Payment"],
+        "operationId": "Step4:POSTPaymentConsume",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Step4%3APOSTPaymentConsumeRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/payment/consent/{consumptionConsentId}": {
+      "get": {
+        "summary": "Step 5: GET Payment Consent",
+        "tags": ["Payment"],
+        "operationId": "Step5:GETPaymentConsent",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "consumptionConsentId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/pix/payment-consume/{consumptionPaymentId}": {
+      "get": {
+        "summary": "Step 6: GET Payment",
+        "tags": ["Payment"],
+        "operationId": "Step6:GETPayment",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "consumptionPaymentId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/payment-consent/{consumptionConsentId}": {
+      "patch": {
+        "summary": "Step 7: PATCH Revoke Payment Consent",
+        "tags": ["Payment"],
+        "operationId": "Step7:PATCHRevokePaymentConsent",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Step7%3APATCHRevokePaymentConsentRequest"
+            }
+          },
+          {
+            "name": "consumptionConsentId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/consent": {
+      "post": {
+        "summary": "Step 3: POST Account Consent",
+        "tags": ["Accounts"],
+        "operationId": "Step3:POSTAccountConsent",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Step3%3APOSTAccountConsentRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/consent/consume": {
+      "post": {
+        "summary": "Step 4: POST Account Consume",
+        "tags": ["Accounts"],
+        "operationId": "Step4:POSTAccountConsume",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Step4%3APOSTAccountConsumeRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/account/consent/{consumptionAccountConsentId}": {
+      "get": {
+        "summary": "Step 5: Get Consent",
+        "tags": ["Accounts"],
+        "operationId": "Step5:GetConsent",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "consumptionAccountConsentId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/consent/{consumptionAccountConsentId}": {
+      "delete": {
+        "summary": "Step 6: Delete Consent",
+        "tags": ["Accounts"],
+        "operationId": "Step6:DeleteConsent",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "consumptionAccountConsentId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/accounts/{consumptionAccountConsentId}/accounts/v1/accounts": {
+      "get": {
+        "summary": "Step 7: Get Accounts",
+        "tags": ["Accounts"],
+        "operationId": "Step7:GetAccounts",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "consumptionAccountConsentId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/accounts/{consumptionAccountConsentId}/accounts/v1/accounts/291e5a29-49ed-401f-a583-193caa7aceee": {
+      "get": {
+        "summary": "Step 8: Get Accounts ID",
+        "tags": ["Accounts"],
+        "operationId": "Step8:GetAccountsID",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "consumptionAccountConsentId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/accounts/{consumptionAccountConsentId}/accounts/v1/accounts/291e5a29-49ed-401f-a583-193caa7aceee/balances": {
+      "get": {
+        "summary": "Step 9: Get Accounts ID Ballance",
+        "tags": ["Accounts"],
+        "operationId": "Step9:GetAccountsIDBallance",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "consumptionAccountConsentId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/accounts/{consumptionAccountConsentId}/accounts/v1/accounts/291e5a29-49ed-401f-a583-193caa7aceee/transactions": {
+      "get": {
+        "summary": "Step 10: Get Accounts ID Transactions",
+        "tags": ["Accounts"],
+        "operationId": "Step10:GetAccountsIDTransactions",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "consumptionAccountConsentId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/accounts/{consumptionAccountConsentId}/credit-cards-accounts/v1/accounts": {
+      "get": {
+        "summary": "Step 11: Get Credit Cards",
+        "tags": ["Accounts"],
+        "operationId": "Step11:GetCreditCards",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "consumptionAccountConsentId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    }
+  },
+  "definitions": {
+    "Step3:POSTPaymentConsentRequest": {
+      "title": "Step3:POSTPaymentConsentRequest",
+      "example": {
+        "relyingPartyData": {
+          "registeredAuthServerId": "exbauth1234"
+        },
+        "paymentRequestData": {
+          "loggedUser": {
+            "document": {
+              "identification": "76109277673",
+              "rel": "CPF"
+            }
+          },
+          "creditor": {
+            "personType": "PESSOA_NATURAL",
+            "cpfCnpj": "48847377765",
+            "name": "Marco Antonio de Brito"
+          },
+          "payment": {
+            "type": "PIX",
+            "schedule": {
+              "single": {
+                "date": "2023-01-01"
+              }
+            },
+            "currency": "BRL",
+            "amount": "100000.12",
+            "ibgeTownCode": "5300108",
+            "details": {
+              "localInstrument": "INIC",
+              "proxy": "12345678901",
+              "creditorAccount": {
+                "ispb": "12345678",
+                "issuer": "1774",
+                "number": "1234567890",
+                "accountType": "CACC"
+              }
+            }
+          },
+          "debtorAccount": {
+            "ispb": "12345678",
+            "issuer": "6272",
+            "number": "94088392",
+            "accountType": "CACC"
+          }
+        }
+      },
+      "type": "object",
+      "properties": {
+        "relyingPartyData": {
+          "$ref": "#/definitions/RelyingPartyData"
+        },
+        "paymentRequestData": {
+          "$ref": "#/definitions/PaymentRequestData"
+        }
+      },
+      "required": ["relyingPartyData", "paymentRequestData"]
+    },
+    "RelyingPartyData": {
+      "title": "RelyingPartyData",
+      "example": {
+        "registeredAuthServerId": "exbauth1234"
+      },
+      "type": "object",
+      "properties": {
+        "registeredAuthServerId": {
+          "type": "string"
+        }
+      },
+      "required": ["registeredAuthServerId"]
+    },
+    "PaymentRequestData": {
+      "title": "PaymentRequestData",
+      "example": {
+        "loggedUser": {
+          "document": {
+            "identification": "76109277673",
+            "rel": "CPF"
+          }
+        },
+        "creditor": {
+          "personType": "PESSOA_NATURAL",
+          "cpfCnpj": "48847377765",
+          "name": "Marco Antonio de Brito"
+        },
+        "payment": {
+          "type": "PIX",
+          "schedule": {
+            "single": {
+              "date": "2023-01-01"
+            }
+          },
+          "currency": "BRL",
+          "amount": "100000.12",
+          "ibgeTownCode": "5300108",
+          "details": {
+            "localInstrument": "INIC",
+            "proxy": "12345678901",
+            "creditorAccount": {
+              "ispb": "12345678",
+              "issuer": "1774",
+              "number": "1234567890",
+              "accountType": "CACC"
+            }
+          }
+        },
+        "debtorAccount": {
+          "ispb": "12345678",
+          "issuer": "6272",
+          "number": "94088392",
+          "accountType": "CACC"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "loggedUser": {
+          "$ref": "#/definitions/LoggedUser"
+        },
+        "creditor": {
+          "$ref": "#/definitions/Creditor"
+        },
+        "payment": {
+          "$ref": "#/definitions/Payment"
+        },
+        "debtorAccount": {
+          "$ref": "#/definitions/DebtorAccount"
+        }
+      },
+      "required": ["loggedUser", "creditor", "payment", "debtorAccount"]
+    },
+    "LoggedUser": {
+      "title": "LoggedUser",
+      "example": {
+        "document": {
+          "identification": "76109277673",
+          "rel": "CPF"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "document": {
+          "$ref": "#/definitions/Document"
+        }
+      },
+      "required": ["document"]
+    },
+    "Document": {
+      "title": "Document",
+      "example": {
+        "identification": "76109277673",
+        "rel": "CPF"
+      },
+      "type": "object",
+      "properties": {
+        "identification": {
+          "type": "string"
+        },
+        "rel": {
+          "type": "string"
+        }
+      },
+      "required": ["identification", "rel"]
+    },
+    "Creditor": {
+      "title": "Creditor",
+      "example": {
+        "personType": "PESSOA_NATURAL",
+        "cpfCnpj": "48847377765",
+        "name": "Marco Antonio de Brito"
+      },
+      "type": "object",
+      "properties": {
+        "personType": {
+          "type": "string"
+        },
+        "cpfCnpj": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": ["personType", "cpfCnpj", "name"]
+    },
+    "Payment": {
+      "title": "Payment",
+      "example": {
+        "type": "PIX",
+        "schedule": {
+          "single": {
+            "date": "2023-01-01"
+          }
+        },
+        "currency": "BRL",
+        "amount": "100000.12",
+        "ibgeTownCode": "5300108",
+        "details": {
+          "localInstrument": "INIC",
+          "proxy": "12345678901",
+          "creditorAccount": {
+            "ispb": "12345678",
+            "issuer": "1774",
+            "number": "1234567890",
+            "accountType": "CACC"
+          }
+        }
+      },
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "schedule": {
+          "$ref": "#/definitions/Schedule"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "string"
+        },
+        "ibgeTownCode": {
+          "type": "string"
+        },
+        "details": {
+          "$ref": "#/definitions/Details"
+        }
+      },
+      "required": [
+        "type",
+        "schedule",
+        "currency",
+        "amount",
+        "ibgeTownCode",
+        "details"
+      ]
+    },
+    "Schedule": {
+      "title": "Schedule",
+      "example": {
+        "single": {
+          "date": "2023-01-01"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "single": {
+          "$ref": "#/definitions/Single"
+        }
+      },
+      "required": ["single"]
+    },
+    "Single": {
+      "title": "Single",
+      "example": {
+        "date": "2023-01-01"
+      },
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string"
+        }
+      },
+      "required": ["date"]
+    },
+    "Details": {
+      "title": "Details",
+      "example": {
+        "localInstrument": "INIC",
+        "proxy": "12345678901",
+        "creditorAccount": {
+          "ispb": "12345678",
+          "issuer": "1774",
+          "number": "1234567890",
+          "accountType": "CACC"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "localInstrument": {
+          "type": "string"
+        },
+        "proxy": {
+          "type": "string"
+        },
+        "creditorAccount": {
+          "$ref": "#/definitions/CreditorAccount"
+        }
+      },
+      "required": ["localInstrument", "proxy", "creditorAccount"]
+    },
+    "CreditorAccount": {
+      "title": "CreditorAccount",
+      "example": {
+        "ispb": "12345678",
+        "issuer": "1774",
+        "number": "1234567890",
+        "accountType": "CACC"
+      },
+      "type": "object",
+      "properties": {
+        "ispb": {
+          "type": "string"
+        },
+        "issuer": {
+          "type": "string"
+        },
+        "number": {
+          "type": "string"
+        },
+        "accountType": {
+          "type": "string"
+        }
+      },
+      "required": ["ispb", "issuer", "number", "accountType"]
+    },
+    "DebtorAccount": {
+      "title": "DebtorAccount",
+      "example": {
+        "ispb": "12345678",
+        "issuer": "6272",
+        "number": "94088392",
+        "accountType": "CACC"
+      },
+      "type": "object",
+      "properties": {
+        "ispb": {
+          "type": "string"
+        },
+        "issuer": {
+          "type": "string"
+        },
+        "number": {
+          "type": "string"
+        },
+        "accountType": {
+          "type": "string"
+        }
+      },
+      "required": ["ispb", "issuer", "number", "accountType"]
+    },
+    "Step4:POSTPaymentConsumeRequest": {
+      "title": "Step4:POSTPaymentConsumeRequest",
+      "example": {
+        "consentData": {
+          "consentId": "{{consumptionConsentId}}",
+          "authCode": "54e770a9-1e19-4e07-b858-6bd526688369",
+          "state": "9d8ff1e9-46ec-4256-bd7f-5d9afde3ad8a",
+          "id_token": "eyJhbGciOiJQUzI1NiIsImtpZCI6Ik5ycFNrQldHYk5OTW5jbGZHYUJPaVZ5N0J5Z3p4NTk3MXZ1S08xRlZ6WUkifQ.eyJvcGVuYmFua2luZ19pbnRlbnRfaWQiOiJ1cm46RVhCOnBpeC1jNjlkZmZkZi1mZjRjLTRlNjgtOGY0OC0xYmU4OGM5MmE2ZjMiLCJzdWIiOiJ1cm46RVhCOnBpeC1jNjlkZmZkZi1mZjRjLTRlNjgtOGY0OC0xYmU4OGM5MmE2ZjMiLCJpc3MiOiJodHRwczovL2F1dGgxLmV4YjIuaG1sLnNhbmRib3gtdGVjYmFuLmNvbS5iciIsImF1ZCI6ImZmOTg5ZDViLTI4NjAtNDI2MS1hYjJiLWRlOTZmZDU1NTE0NSIsImlhdCI6MTY1MzU3MTExMiwiZXhwIjoxNjUzNTcyMDEyLCJub25jZSI6IjUxY2YwOGExLWM2ZjgtNGUxOS05MmZhLWQ4NmU1OGVlMTBhZiIsImF1dGhfdGltZSI6MTY1MzU3MTExMiwiYXpwIjoiZmY5ODlkNWItMjg2MC00MjYxLWFiMmItZGU5NmZkNTU1MTQ1IiwicmVmcmVzaF90b2tlbl9leHBpcmVzX2F0IjoxOTY4OTMxMTEyLCJjX2hhc2giOiJLTnJyX2hXLUZKRFR1R05DN1RmbjNRIiwic19oYXNoIjoiYzNjaEtrQTZyX01fbDdRcmtFcGdoZyIsImFjciI6InVybjpvcGVuYmFua2luZzpwc2QyOnNjYSJ9.IWoaEWejwxRc6eGpWeBGAfb_-7Va7lc0rpn3yV3H26BtO_WxuJbZCfwzPtfpbU78nC2-WfAP1W7L2fYTKFslKnXbUlBtQoHp0lX3O39-zs21t6d63WhqrY3BDfhLafwlzDAH1snmwM2PJ5ev5xea-sQ3kXrEfT-gFgbI_6nxT2pfQJa9l-hcJZvPbJS57MjqBFU8lThT4e6HlBbM-gsfAIpGSxr_7UYFN7urAc71ZUKoxJPKDFdYsCZZbTwLRvl2W4Dvn5s8QGwrO3aLZ0jt-hmoCg_Bi02i0ZnBjrhjvEohXoIhjC7pRY-dZcQ0LQBvVBHDYCOzsiOsiStb4Mmz7g",
+          "redirectUri": "https://www.certification.openid.net/test/a/amo/callback"
+        },
+        "paymentConsumeRequestData": {
+          "localInstrument": "INIC",
+          "payment": {
+            "amount": "100000.12",
+            "currency": "BRL"
+          },
+          "creditorAccount": {
+            "ispb": "12345678",
+            "issuer": "1774",
+            "number": "1234567890",
+            "accountType": "CACC"
+          },
+          "remittanceInformation": "Pagamento da nota XPTO035-002.",
+          "proxy": "12345678901",
+          "cnpjInitiator": "60545350000165",
+          "transactionIdentification": "E00038166201907261559y6j6",
+          "ibgeTownCode": "5300108"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "consentData": {
+          "$ref": "#/definitions/ConsentData"
+        },
+        "paymentConsumeRequestData": {
+          "$ref": "#/definitions/PaymentConsumeRequestData"
+        }
+      },
+      "required": ["consentData", "paymentConsumeRequestData"]
+    },
+    "ConsentData": {
+      "title": "ConsentData",
+      "example": {
+        "consentId": "{{consumptionConsentId}}",
+        "authCode": "54e770a9-1e19-4e07-b858-6bd526688369",
+        "state": "9d8ff1e9-46ec-4256-bd7f-5d9afde3ad8a",
+        "id_token": "eyJhbGciOiJQUzI1NiIsImtpZCI6Ik5ycFNrQldHYk5OTW5jbGZHYUJPaVZ5N0J5Z3p4NTk3MXZ1S08xRlZ6WUkifQ.eyJvcGVuYmFua2luZ19pbnRlbnRfaWQiOiJ1cm46RVhCOnBpeC1jNjlkZmZkZi1mZjRjLTRlNjgtOGY0OC0xYmU4OGM5MmE2ZjMiLCJzdWIiOiJ1cm46RVhCOnBpeC1jNjlkZmZkZi1mZjRjLTRlNjgtOGY0OC0xYmU4OGM5MmE2ZjMiLCJpc3MiOiJodHRwczovL2F1dGgxLmV4YjIuaG1sLnNhbmRib3gtdGVjYmFuLmNvbS5iciIsImF1ZCI6ImZmOTg5ZDViLTI4NjAtNDI2MS1hYjJiLWRlOTZmZDU1NTE0NSIsImlhdCI6MTY1MzU3MTExMiwiZXhwIjoxNjUzNTcyMDEyLCJub25jZSI6IjUxY2YwOGExLWM2ZjgtNGUxOS05MmZhLWQ4NmU1OGVlMTBhZiIsImF1dGhfdGltZSI6MTY1MzU3MTExMiwiYXpwIjoiZmY5ODlkNWItMjg2MC00MjYxLWFiMmItZGU5NmZkNTU1MTQ1IiwicmVmcmVzaF90b2tlbl9leHBpcmVzX2F0IjoxOTY4OTMxMTEyLCJjX2hhc2giOiJLTnJyX2hXLUZKRFR1R05DN1RmbjNRIiwic19oYXNoIjoiYzNjaEtrQTZyX01fbDdRcmtFcGdoZyIsImFjciI6InVybjpvcGVuYmFua2luZzpwc2QyOnNjYSJ9.IWoaEWejwxRc6eGpWeBGAfb_-7Va7lc0rpn3yV3H26BtO_WxuJbZCfwzPtfpbU78nC2-WfAP1W7L2fYTKFslKnXbUlBtQoHp0lX3O39-zs21t6d63WhqrY3BDfhLafwlzDAH1snmwM2PJ5ev5xea-sQ3kXrEfT-gFgbI_6nxT2pfQJa9l-hcJZvPbJS57MjqBFU8lThT4e6HlBbM-gsfAIpGSxr_7UYFN7urAc71ZUKoxJPKDFdYsCZZbTwLRvl2W4Dvn5s8QGwrO3aLZ0jt-hmoCg_Bi02i0ZnBjrhjvEohXoIhjC7pRY-dZcQ0LQBvVBHDYCOzsiOsiStb4Mmz7g",
+        "redirectUri": "https://www.certification.openid.net/test/a/amo/callback"
+      },
+      "type": "object",
+      "properties": {
+        "consentId": {
+          "type": "string"
+        },
+        "authCode": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "id_token": {
+          "type": "string"
+        },
+        "redirectUri": {
+          "type": "string"
+        }
+      },
+      "required": ["consentId", "authCode", "state", "id_token", "redirectUri"]
+    },
+    "PaymentConsumeRequestData": {
+      "title": "PaymentConsumeRequestData",
+      "example": {
+        "localInstrument": "INIC",
+        "payment": {
+          "amount": "100000.12",
+          "currency": "BRL"
+        },
+        "creditorAccount": {
+          "ispb": "12345678",
+          "issuer": "1774",
+          "number": "1234567890",
+          "accountType": "CACC"
+        },
+        "remittanceInformation": "Pagamento da nota XPTO035-002.",
+        "proxy": "12345678901",
+        "cnpjInitiator": "60545350000165",
+        "transactionIdentification": "E00038166201907261559y6j6",
+        "ibgeTownCode": "5300108"
+      },
+      "type": "object",
+      "properties": {
+        "localInstrument": {
+          "type": "string"
+        },
+        "payment": {
+          "$ref": "#/definitions/Payment1"
+        },
+        "creditorAccount": {
+          "$ref": "#/definitions/CreditorAccount"
+        },
+        "remittanceInformation": {
+          "type": "string"
+        },
+        "proxy": {
+          "type": "string"
+        },
+        "cnpjInitiator": {
+          "type": "string"
+        },
+        "transactionIdentification": {
+          "type": "string"
+        },
+        "ibgeTownCode": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "localInstrument",
+        "payment",
+        "creditorAccount",
+        "remittanceInformation",
+        "proxy",
+        "cnpjInitiator",
+        "transactionIdentification",
+        "ibgeTownCode"
+      ]
+    },
+    "Payment1": {
+      "title": "Payment1",
+      "example": {
+        "amount": "100000.12",
+        "currency": "BRL"
+      },
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        }
+      },
+      "required": ["amount", "currency"]
+    },
+    "Step7:PATCHRevokePaymentConsentRequest": {
+      "title": "Step7:PATCHRevokePaymentConsentRequest",
+      "example": {
+        "data": {
+          "status": "REVOKED",
+          "revocation": {
+            "loggedUser": {
+              "document": {
+                "identification": "11111111111",
+                "rel": "CPF"
+              }
+            },
+            "revokedBy": "USER",
+            "reason": {
+              "code": "OTHER",
+              "additionalInformation": "Não quero mais o serviço"
+            }
+          }
+        }
+      },
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/Data"
+        }
+      },
+      "required": ["data"]
+    },
+    "Data": {
+      "title": "Data",
+      "example": {
+        "status": "REVOKED",
+        "revocation": {
+          "loggedUser": {
+            "document": {
+              "identification": "11111111111",
+              "rel": "CPF"
+            }
+          },
+          "revokedBy": "USER",
+          "reason": {
+            "code": "OTHER",
+            "additionalInformation": "Não quero mais o serviço"
+          }
+        }
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "revocation": {
+          "$ref": "#/definitions/Revocation"
+        }
+      },
+      "required": ["status", "revocation"]
+    },
+    "Revocation": {
+      "title": "Revocation",
+      "example": {
+        "loggedUser": {
+          "document": {
+            "identification": "11111111111",
+            "rel": "CPF"
+          }
+        },
+        "revokedBy": "USER",
+        "reason": {
+          "code": "OTHER",
+          "additionalInformation": "Não quero mais o serviço"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "loggedUser": {
+          "$ref": "#/definitions/LoggedUser"
+        },
+        "revokedBy": {
+          "type": "string"
+        },
+        "reason": {
+          "$ref": "#/definitions/Reason"
+        }
+      },
+      "required": ["loggedUser", "revokedBy", "reason"]
+    },
+    "Reason": {
+      "title": "Reason",
+      "example": {
+        "code": "OTHER",
+        "additionalInformation": "Não quero mais o serviço"
+      },
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "additionalInformation": {
+          "type": "string"
+        }
+      },
+      "required": ["code", "additionalInformation"]
+    },
+    "Step3:POSTAccountConsentRequest": {
+      "title": "Step3:POSTAccountConsentRequest",
+      "example": {
+        "relyingPartyData": {
+          "registeredAuthServerId": "c8f0bf49-4744-4933-8960-7add6e590841"
+        },
+        "accountRequestData": {
+          "loggedUser": {
+            "document": {
+              "identification": "76109277673",
+              "rel": "CPF"
+            }
+          },
+          "permissions": [
+            "ACCOUNTS_READ",
+            "ACCOUNTS_BALANCES_READ",
+            "ACCOUNTS_OVERDRAFT_LIMITS_READ",
+            "RESOURCES_READ",
+            "ACCOUNTS_BALANCES_READ",
+            "ACCOUNTS_TRANSACTIONS_READ",
+            "CREDIT_CARDS_ACCOUNTS_READ",
+            "CREDIT_CARDS_ACCOUNTS_BILLS_READ",
+            "CREDIT_CARDS_ACCOUNTS_BILLS_TRANSACTIONS_READ",
+            "CREDIT_CARDS_ACCOUNTS_LIMITS_READ",
+            "CREDIT_CARDS_ACCOUNTS_TRANSACTIONS_READ",
+            "LOANS_READ",
+            "LOANS_WARRANTIES_READ",
+            "LOANS_SCHEDULED_INSTALMENTS_READ",
+            "LOANS_PAYMENTS_READ",
+            "FINANCINGS_READ",
+            "FINANCINGS_WARRANTIES_READ",
+            "FINANCINGS_SCHEDULED_INSTALMENTS_READ",
+            "FINANCINGS_PAYMENTS_READ",
+            "UNARRANGED_ACCOUNTS_OVERDRAFT_READ",
+            "UNARRANGED_ACCOUNTS_OVERDRAFT_WARRANTIES_READ",
+            "UNARRANGED_ACCOUNTS_OVERDRAFT_SCHEDULED_INSTALMENTS_READ",
+            "UNARRANGED_ACCOUNTS_OVERDRAFT_PAYMENTS_READ",
+            "INVOICE_FINANCINGS_READ",
+            "INVOICE_FINANCINGS_WARRANTIES_READ",
+            "INVOICE_FINANCINGS_SCHEDULED_INSTALMENTS_READ",
+            "INVOICE_FINANCINGS_PAYMENTS_READ",
+            "CUSTOMERS_PERSONAL_IDENTIFICATIONS_READ",
+            "CUSTOMERS_PERSONAL_ADITTIONALINFO_READ"
+          ],
+          "expirationDateTime": "2023-04-22T08:30:00Z"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "relyingPartyData": {
+          "$ref": "#/definitions/RelyingPartyData"
+        },
+        "accountRequestData": {
+          "$ref": "#/definitions/AccountRequestData"
+        }
+      },
+      "required": ["relyingPartyData", "accountRequestData"]
+    },
+    "AccountRequestData": {
+      "title": "AccountRequestData",
+      "example": {
+        "loggedUser": {
+          "document": {
+            "identification": "76109277673",
+            "rel": "CPF"
+          }
+        },
+        "permissions": [
+          "ACCOUNTS_READ",
+          "ACCOUNTS_BALANCES_READ",
+          "ACCOUNTS_OVERDRAFT_LIMITS_READ",
+          "RESOURCES_READ",
+          "ACCOUNTS_BALANCES_READ",
+          "ACCOUNTS_TRANSACTIONS_READ",
+          "CREDIT_CARDS_ACCOUNTS_READ",
+          "CREDIT_CARDS_ACCOUNTS_BILLS_READ",
+          "CREDIT_CARDS_ACCOUNTS_BILLS_TRANSACTIONS_READ",
+          "CREDIT_CARDS_ACCOUNTS_LIMITS_READ",
+          "CREDIT_CARDS_ACCOUNTS_TRANSACTIONS_READ",
+          "LOANS_READ",
+          "LOANS_WARRANTIES_READ",
+          "LOANS_SCHEDULED_INSTALMENTS_READ",
+          "LOANS_PAYMENTS_READ",
+          "FINANCINGS_READ",
+          "FINANCINGS_WARRANTIES_READ",
+          "FINANCINGS_SCHEDULED_INSTALMENTS_READ",
+          "FINANCINGS_PAYMENTS_READ",
+          "UNARRANGED_ACCOUNTS_OVERDRAFT_READ",
+          "UNARRANGED_ACCOUNTS_OVERDRAFT_WARRANTIES_READ",
+          "UNARRANGED_ACCOUNTS_OVERDRAFT_SCHEDULED_INSTALMENTS_READ",
+          "UNARRANGED_ACCOUNTS_OVERDRAFT_PAYMENTS_READ",
+          "INVOICE_FINANCINGS_READ",
+          "INVOICE_FINANCINGS_WARRANTIES_READ",
+          "INVOICE_FINANCINGS_SCHEDULED_INSTALMENTS_READ",
+          "INVOICE_FINANCINGS_PAYMENTS_READ",
+          "CUSTOMERS_PERSONAL_IDENTIFICATIONS_READ",
+          "CUSTOMERS_PERSONAL_ADITTIONALINFO_READ"
+        ],
+        "expirationDateTime": "2023-04-22T08:30:00Z"
+      },
+      "type": "object",
+      "properties": {
+        "loggedUser": {
+          "$ref": "#/definitions/LoggedUser"
+        },
+        "permissions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "expirationDateTime": {
+          "type": "string"
+        }
+      },
+      "required": ["loggedUser", "permissions", "expirationDateTime"]
+    },
+    "Step4:POSTAccountConsumeRequest": {
+      "title": "Step4:POSTAccountConsumeRequest",
+      "example": {
+        "consentData": {
+          "consentId": "{{consumptionAccountConsentId}}",
+          "authCode": "j6XBnPUjqfouE1y1hl7nhC1LeR3jZpL9NuSNzqwFr-I",
+          "state": "e87db5f5-bd54-4b74-8a71-54f3c882d43f",
+          "id_token": "eyJhbGciOiJQUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjE2MjI2MzA0MDk2MjEtYzliZWRiMWVhYSJ9.eyJzdWIiOiJyYWxwaC5icmFnZ0BnbWFpbC5jb20iLCJub25jZSI6ImQwMmEyYWMyLWU0MTctNGFiNy1hNDdkLWViMDk3NWQ2ODVkNiIsImNfaGFzaCI6InVyM3JtTzcwcGxxQ0oyNm15N2NoUEEiLCJzX2hhc2giOiJMbm5QS2hld3VSYUhlT3NXVmFWd2JRIiwiYXVkIjoibFlNNHkwZFlZSzN6TTZSNFlscVF1IiwiZXhwIjoxNjU0ODY3OTE2LCJpYXQiOjE2NTQ4NjQzMTYsImlzcyI6Imh0dHBzOi8vYXV0aC5tb2NrYmFuay5wb2MucmFpZGlhbS5pbyJ9.OEXL2Sitty7SDNfQbPZeNYHKJSDaZWyyVqsfPT74Fu-b7Xz1LRYwyD_qjEXdmviI9ENaqbIN-11tfQKXCpV59-MuZ2m_PsmAiHrYGkNU_UqRm6wOhmlJetbEnlIK32_gribTwAiFs-qjeV1zJ4LITiQm7juz3nHFX9kEtgb6q2AQwUYR8NGqt8yahC_E5JFAAldhcj8W4meJNK8TOKjJjqfkLloz2gY0WAUxWM1pWBkzK4anOzb2_VsYt9cAdxQUe8YPZlQ1UmgGLxv_03iyHmwfmzT8GYSZ054KSMbFobu1TFyRKe0YHb8UGLVbiLpWzOJWwHTR5NynJqKl1XY_fQ",
+          "redirectUri": "https://1f14-189-6-213-134.sa.ngrok.io"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "consentData": {
+          "$ref": "#/definitions/ConsentData"
+        }
+      },
+      "required": ["consentData"]
+    }
+  },
+  "security": [
+    {
+      "auth": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Setup"
+    },
+    {
+      "name": "Payment"
+    },
+    {
+      "name": "Accounts"
+    }
+  ]
+}
