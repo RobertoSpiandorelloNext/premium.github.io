@@ -1,5 +1,7 @@
 openapi: 3.0.1
-host: https://gateway.figos.digital/premium
+host: gateway.figos.digital/premium
+schemes:
+  - https
 info:
   title: API Premium
   description: |
