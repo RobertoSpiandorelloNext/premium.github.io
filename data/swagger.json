@@ -2,39 +2,18 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0",
-    "title": "Brcb Consumption Copy 2",
+    "title": "API Premium",
     "contact": {}
   },
-  "host": "as1.staging.tecban-consumption.uk-hub.ozoneapi.co.uk",
+  "host": "https://gateway.figos.digital/premium",
   "basePath": "/",
-  "securityDefinitions": {
-    "auth": {
-      "type": "basic"
-    }
-  },
   "schemes": ["https"],
   "consumes": ["application/json"],
   "produces": ["application/json"],
   "paths": {
-    "/": {
-      "get": {
-        "summary": "TEST Register Provider",
-        "tags": ["Setup"],
-        "operationId": "TESTRegisterProvider",
-        "deprecated": false,
-        "produces": ["application/json"],
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "",
-            "headers": {}
-          }
-        }
-      }
-    },
     "/token": {
       "post": {
-        "summary": "Step 1: Get Client Credentials Grant (consumption scope)",
+        "summary": "Passo 1: Obter Credenciais do Cliente (Escopo de Consumo)",
         "tags": ["Payment"],
         "operationId": "Step1:GetClientCredentialsGrant(consumptionscope)",
         "deprecated": false,
@@ -44,7 +23,23 @@
           {
             "name": "Content-Type",
             "in": "header",
-            "required": false,
+            "required": true,
+            "enum": ["application/x-www-form-urlencoded"],
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "enum": ["application/x-www-form-urlencoded"],
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": true,
             "enum": ["application/x-www-form-urlencoded"],
             "type": "string",
             "description": ""
