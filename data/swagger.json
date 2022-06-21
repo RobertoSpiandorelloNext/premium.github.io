@@ -32,7 +32,6 @@
             "name": "Authorization",
             "in": "header",
             "required": true,
-            "enum": ["application/x-www-form-urlencoded"],
             "type": "string",
             "description": ""
           },
@@ -40,7 +39,6 @@
             "name": "x-api-key",
             "in": "header",
             "required": true,
-            "enum": ["application/x-www-form-urlencoded"],
             "type": "string",
             "description": ""
           },
