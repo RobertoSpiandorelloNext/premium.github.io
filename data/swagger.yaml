@@ -1,6 +1,6 @@
 openapi: 3.0.1
 info:
-  title: Ozone TPP Connect Apis
+  title: API Premium
   description: |
 
     This document provides the OAS3 specification for the Apis provided by the Ozone TPP Connect.
